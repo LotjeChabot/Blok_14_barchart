@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Instagram behaviour in 2014</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                background: black;
+				face:helvetica;
+            }
+            div {
+                background: lightblue;
+                margin-bottom: 10px;
+                padding: 10px;
+            }
+			
+			.tooltip {
+			position: absolute;
+			background: #069; 
+			padding:5px;
+			border-radius: 5px;
+			}
+
+        </style>
+    </head>
+    <body>
+        <h1>
+		<center>
+		<font face="Rockwell" color="white"> Instagram behaviour in 2014</font>
+		</center>
+		</h1>
+		<P align="center"> <FONT size="2" face="Rockwell" color="white"> Deze grafiek geeft inzicht in het instagram gedrag van mensen die foto's hebben gepost in drie populaire steden. </FONT>
+		<P align="center"> <FONT size="2" face="Rockwell" color="white"> 2014 was het jaar van de selfies, die men veel plaatste op instagram. En dan het allerliefst met een spannende achtergrond. </FONT>
+		<P align="center"> <FONT size="2" face="Rockwell" color="white"> Ik heb onderzocht hoeveel instagram posts er maandelijks in 2014 zijn gemaakt in Parijs, Rome en Londen. </FONT> </P>
+        <button id="rome">Rome</button>
+		<button id="parijs">Parijs</button>
+		<button id="londen">Londen</button>
+
+        <ul></ul>
+
+        <script src="lib/d3.min.js"></script>
+        <script src="lib/jquery.js"></script>
+
+        <script>
+		var tooltip = d3.select("body")
+			.append("div")
+			  .attr("class", "tooltip")
+			  .style("opacity", 0);
+			  
+          d3.csv('InstagramRome.csv', function(d) {
+                for (var i = 0; i < d.length; i = i + 1) {
+					console.log(d[i]);
+                    var aantal = d[i].aantal;
+					var month = d[i].month;
+                    
+					var text = '<div style="width:0;">' + month + '</div>';
+                    $("ul").append(text);
+		
+                }
+                $("#rome").click(function() {
+                    $("div").each(function(i, el) {
+                        var aantal = d[i].aantal;
+						var month = d[i].month;
+                        var width = aantal.replace('$', '') / 150 + 'px';
+                        $(el).animate({
+                            'width' : width
+                        }, 1000);
+                    })
+                });
+            });
+		
+		            d3.csv('InstagramParijs.csv', function(d) {
+                for (var i = 0; i < d.length; i = i + 1) {
+					console.log(d[i]);
+                    var aantal = d[i].aantal;
+					var month = d[i].month;
+                    
+					
+                }
+                $("#parijs").click(function() {
+                    $("div").each(function(i, el) {
+                        var aantal = d[i].aantal;
+						var month = d[i].month;
+                        var width = aantal.replace('$', '') / 150 + 'px';
+                        $(el).animate({
+                            'width' : width
+                        }, 1000);
+                    })
+                });
+            });
+			
+			            d3.csv('InstagramLonden.csv', function(d) {
+                for (var i = 0; i < d.length; i = i + 1) {
+					console.log(d[i]);
+                    var aantal = d[i].aantal;
+					var month = d[i].month;
+					
+                }
+                $("#londen").click(function() {
+                    $("div").each(function(i, el) {
+                        var aantal = d[i].aantal;
+						var month = d[i].month;
+                        var width = aantal.replace('$', '') / 150 + 'px';
+                        $(el).animate({
+                            'width' : width
+                        }, 1000);
+                    })
+                });
+            });
+        </script>
+	<P> <FONT size="2" face="Rockwell" color="white"> Bron:http://iconosquare.com/tag/posts </FONT>
+    </body>
+</html>
